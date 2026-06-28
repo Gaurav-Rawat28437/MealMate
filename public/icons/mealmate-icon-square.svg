@@ -1,0 +1,14 @@
+<svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+  <rect width="160" height="160" rx="36" fill="#D8531F"/>
+
+  <!-- bowl -->
+  <path d="M34 88 a46 46 0 0 0 92 0 z" fill="#FFF8F2"/>
+  <rect x="30" y="84" width="100" height="10" rx="5" fill="#FFF8F2"/>
+
+  <!-- leaf accent -->
+  <path d="M80 58 C 68 58, 60 66, 60 78 C 72 78, 80 70, 80 58 Z" fill="#6B8F5C"/>
+
+  <!-- steam -->
+  <path d="M62 44 C 62 36, 70 36, 70 28 C 70 20, 62 20, 62 13" stroke="#FFF8F2" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9"/>
+  <path d="M92 44 C 92 36, 100 36, 100 28 C 100 20, 92 20, 92 13" stroke="#FFF8F2" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9"/>
+</svg>

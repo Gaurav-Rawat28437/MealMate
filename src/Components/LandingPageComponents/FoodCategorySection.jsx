@@ -48,7 +48,7 @@ function FoodCategorySection() {
         {foodItems.map((item, index) => (
           <div
             key={index}
-            className="h-[170px] w-[160px] sm:w-[190px] bg-white rounded-[26px] border border-orange-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-4"
+            className="h-[170px] w-[160px] sm:w-[190px] bg-white rounded-[26px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-4"
           >
             <div className="h-[82px] w-[82px] rounded-full bg-[#FFF0E7] flex items-center justify-center text-5xl">
               {item.emoji}

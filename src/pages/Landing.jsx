@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LandingPageNavbar from "../Components/LandingPageComponents/LandingPageNavbar";
 import HeroSection from "../Components/LandingPageComponents/HeroSection";
 import FoodCategorySection from "../Components/LandingPageComponents/FoodCategorySection";
 
 function LandingPage() {
+
+  useEffect(()=>{
+    fetch(`${import.meta.env.VITE_BE_URL}/food`)
+  },[])
   return (
     <main className="w-full min-h-screen bg-[#FFF8F2] overflow-hidden">
       {/* Hero wrapper */}

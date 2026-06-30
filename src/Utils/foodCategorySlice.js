@@ -1,29 +1,55 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getfoodCategories } from "../services/foodServiceAPI";
+import { getFoodCategories, getFoodItemForLandingPage } from "../services/foodAndRestaurantServiceAPI";
 
+
+export const foodItemThunk=createAsyncThunk("get-fooditem",async()=>{
+        
+    const data=await getFoodItemForLandingPage()
+    console.log(data)
+    return data
+        
+})
 
 export const foodCategoryThunk=createAsyncThunk("get-foodcategory",async()=>{
-    try{
-        const data=await getfoodCategories()
-        return data
-    }
-    catch(error)
-    {
-        console.log(error)
-    }
+        
+    const data=await getFoodCategories()
+    console.log(data)
+    return data
+        
 })
 
 
 const foodCategorySlice=createSlice({
     name:"foodCategory",
     initialState:{
+        foodItems: [],
+        foodCategories: [],
         loading:false,
-        data:[],
         error:null
     },
     reducers:{},
     extraReducers:(builder)=>{
         builder
+        .addCase(foodItemThunk.pending,(state,action)=>{
+            return {
+                ...state,
+                loading:true
+            }
+        })
+        .addCase(foodItemThunk.fulfilled,(state,action)=>{
+            return {
+                ...state,
+                loading:false,
+                foodItems:action.payload
+            }
+        })
+        .addCase(foodItemThunk.rejected,(state,action)=>{
+            return {
+                ...state,
+                loading:false,
+                error:action.error.message
+            }
+        })
         .addCase(foodCategoryThunk.pending,(state,action)=>{
             return {
                 ...state,
@@ -34,7 +60,7 @@ const foodCategorySlice=createSlice({
             return {
                 ...state,
                 loading:false,
-                data:action.payload
+                foodCategories:action.payload
             }
         })
         .addCase(foodCategoryThunk.rejected,(state,action)=>{

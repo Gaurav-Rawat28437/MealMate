@@ -6,7 +6,7 @@ import restaurantSliceReducer from "./restaurantSlice";
 const store=configureStore({
     reducer:{
         location:locationSliceReducer,
-        foodcategory:foodCategorySliceReducer,
+        foodCategory:foodCategorySliceReducer,
         restaurant:restaurantSliceReducer
     }
 

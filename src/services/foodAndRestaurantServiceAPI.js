@@ -9,7 +9,7 @@ export const getFoodItemForLandingPage = async () => {
     }
 
     const data = await res.json()
-    console.log(data)
+    
     return data
   } catch (error) {
     throw error
@@ -27,7 +27,7 @@ export const getFoodCategories = async () => {
     }
 
     const data = await res.json()
-    console.log(data)
+    
     return data
   } catch (error) {
     throw error
@@ -46,7 +46,7 @@ export const getRestaurantsByCategory = async (foodCategoryId) => {
     }
 
     const data = await res.json()
-    console.log(data)
+    
     return data
   } catch (error) {
     throw error

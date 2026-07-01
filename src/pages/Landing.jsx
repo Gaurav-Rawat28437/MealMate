@@ -1,13 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LandingPageNavbar from "../Components/LandingPageComponents/LandingPageNavbar";
 import HeroSection from "../Components/LandingPageComponents/HeroSection";
 import FoodCategorySection from "../Components/LandingPageComponents/FoodCategorySection";
+import { useDispatch, useSelector } from "react-redux";
+import { foodItemThunk } from "../Utils/foodCategorySlice";
 
 function LandingPage() {
 
+  const foodItemsData=useSelector(store=>store.foodCategory?.foodItems)
+  console.log(foodItemsData)
+  const dispatch=useDispatch()
+
   useEffect(()=>{
-    fetch(`${import.meta.env.VITE_BE_URL}/food`)
-  },[])
+    if(!foodItemsData || foodItemsData.length==0)
+    {
+      dispatch(foodItemThunk())
+      
+    }
+  },[dispatch,foodItemsData])
+
   return (
     <main className="w-full min-h-screen bg-[#FFF8F2] overflow-hidden">
       {/* Hero wrapper */}
@@ -20,7 +31,7 @@ function LandingPage() {
 
       {/* Food category section */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-[120px] py-16 md:py-20 bg-[#FFF8F2]">
-        <FoodCategorySection />
+        <FoodCategorySection foodItemsData={foodItemsData} />
       </section>
     </main>
   );

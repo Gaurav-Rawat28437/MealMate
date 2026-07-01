@@ -5,7 +5,7 @@ import { getFoodCategories, getFoodItemForLandingPage } from "../services/foodAn
 export const foodItemThunk=createAsyncThunk("get-fooditem",async()=>{
         
     const data=await getFoodItemForLandingPage()
-    console.log(data)
+   
     return data
         
 })
@@ -13,7 +13,7 @@ export const foodItemThunk=createAsyncThunk("get-fooditem",async()=>{
 export const foodCategoryThunk=createAsyncThunk("get-foodcategory",async()=>{
         
     const data=await getFoodCategories()
-    console.log(data)
+    
     return data
         
 })

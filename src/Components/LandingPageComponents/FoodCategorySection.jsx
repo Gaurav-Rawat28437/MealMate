@@ -1,20 +1,6 @@
 import React from "react";
 
-function FoodCategorySection() {
-  const foodItems = [
-    { name: "Biryani", emoji: "🍛" },
-    { name: "Pizza", emoji: "🍕" },
-    { name: "Burger", emoji: "🍔" },
-    { name: "Rolls", emoji: "🌯" },
-    { name: "Chinese", emoji: "🥡" },
-    { name: "Cake", emoji: "🍰" },
-    { name: "Dosa", emoji: "🥞" },
-    { name: "Momos", emoji: "🥟" },
-    { name: "Noodles", emoji: "🍜" },
-    { name: "Ice Cream", emoji: "🍨" },
-    { name: "Paratha", emoji: "🫓" },
-    { name: "Coffee", emoji: "☕" },
-  ];
+function FoodCategorySection({foodItemsData}) {
 
   return (
     <main className="w-full">
@@ -45,7 +31,7 @@ function FoodCategorySection() {
       </div>
 
       <div className="grid grid-flow-col grid-rows-2 gap-5 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {foodItems.map((item, index) => (
+        {foodItemsData.length>0 && foodItemsData.map((item, index) => (
           <div
             key={index}
             className="h-[170px] w-[160px] sm:w-[190px] bg-white rounded-[26px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-4"

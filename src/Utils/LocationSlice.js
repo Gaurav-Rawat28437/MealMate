@@ -16,7 +16,6 @@ export const getLocationThunk=createAsyncThunk("locationThunk",async()=>{
             reject(error.message)
         })
     })
-    console.log(data)
 
     if(data.lat || data.lon)
     {

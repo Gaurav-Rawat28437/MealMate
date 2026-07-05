@@ -1,6 +1,13 @@
 import React from "react";
+import LandingFoodItemLoading from "../other/LandingFoodItemLoading";
+import LeftRightBtn from "../other/LeftRightBtn";
 
-function FoodCategorySection({foodItemsData}) {
+function FoodCategorySection({foodItemsData,loading}) {
+
+  if(loading)
+  {
+    return <LandingFoodItemLoading/>
+  }
 
   return (
     <main className="w-full">
@@ -19,15 +26,7 @@ function FoodCategorySection({foodItemsData}) {
           </p>
         </div>
 
-        <div className="hidden md:flex gap-3">
-          <button className="h-11 w-11 rounded-full bg-white border border-slate-200 shadow-sm hover:bg-[#FF5200] hover:text-white transition">
-            <i className="fa-solid fa-arrow-left"></i>
-          </button>
-
-          <button className="h-11 w-11 rounded-full bg-white border border-slate-200 shadow-sm hover:bg-[#FF5200] hover:text-white transition">
-            <i className="fa-solid fa-arrow-right"></i>
-          </button>
-        </div>
+        <LeftRightBtn/>
       </div>
 
       <div className="grid grid-flow-col grid-rows-2 gap-5 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

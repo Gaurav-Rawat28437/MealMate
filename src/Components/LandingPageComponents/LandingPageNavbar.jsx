@@ -21,7 +21,7 @@ function LandingPageNavbar() {
 
       {/* Nav links */}
       <div className="hidden md:flex items-center gap-9 text-[15px] font-medium text-[#111111]">
-        <Link to="/" className="hover:text-[#FF7A1A] transition">
+        <Link to="/home" className="hover:text-[#FF7A1A] transition">
           Home
         </Link>
 

@@ -23,7 +23,7 @@ export const getLocationThunk=createAsyncThunk("locationThunk",async()=>{
             const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${data.lat}&lon=${data.lon}&format=json`)
             const apiRes=await res.json()
             data.location=apiRes.display_name
-            console.log(data)
+            
             return data
         }
         catch(error)

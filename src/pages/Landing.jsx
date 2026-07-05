@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import LandingPageNavbar from "../Components/LandingPageComponents/LandingPageNavbar";
 import HeroSection from "../Components/LandingPageComponents/HeroSection";
 import FoodCategorySection from "../Components/LandingPageComponents/FoodCategorySection";
 import { useDispatch, useSelector } from "react-redux";
 import { foodItemThunk } from "../Utils/foodCategorySlice";
+import Loading from "../Components/other/PageLoading";
 
 function LandingPage() {
 
-  const foodItemsData=useSelector(store=>store.foodCategory?.foodItems)
-  console.log(foodItemsData)
+  const {foodItems:foodItemsData,loading}=useSelector(store=>store.foodCategory)
+  
+ 
   const dispatch=useDispatch()
 
   useEffect(()=>{
-    if(!foodItemsData || foodItemsData.length==0)
+    if(!foodItemsData || foodItemsData.length===0)
     {
       dispatch(foodItemThunk())
       
     }
-  },[dispatch,foodItemsData])
+  },[dispatch,foodItemsData.length])
+
 
   return (
     <main className="w-full min-h-screen bg-[#FFF8F2] overflow-hidden">
@@ -31,7 +34,7 @@ function LandingPage() {
 
       {/* Food category section */}
       <section className="w-full px-4 sm:px-6 md:px-10 lg:px-[120px] py-16 md:py-20 bg-[#FFF8F2]">
-        <FoodCategorySection foodItemsData={foodItemsData} />
+        <FoodCategorySection foodItemsData={foodItemsData} loading={loading}/>
       </section>
     </main>
   );

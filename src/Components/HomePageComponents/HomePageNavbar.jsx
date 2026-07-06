@@ -4,18 +4,9 @@ import { Link } from "react-router-dom";
 import store from "../../Utils/Store";
 
 function HomePageNavbar() {
+  const { suburb, city } = useSelector(store=> store.location?.data)
 
-  const fullLocation = useSelector(
-  (store) => store.location?.data?.location
-)
-
-const location = fullLocation
-  ? fullLocation
-      .split(",")
-      .map((item) => item.trim())
-      .filter((_, index) => index === 0 || index === 2)
-      .join(", ")
-  : "Select location"
+const location = suburb && city ? `${suburb}, ${city}` : "Select location"
 
   return (
     <nav className="w-full h-[80px] bg-white flex items-center justify-between px-[100px] shadow-lg">

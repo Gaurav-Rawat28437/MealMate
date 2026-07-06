@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LeftRightBtn from "../other/LeftRightBtn";
 import FoodCategoryLoading from "../other/HomeFoodCategoryLoading";
+import { useDispatch, useSelector } from "react-redux";
+import { foodCategoryThunk } from "../../Utils/foodCategorySlice";
 
-function HomeFoodCategory({ foodCategoryData, loading }) {
-    console.log(foodCategoryData)
+function HomeFoodCategory() {
+
+   const {foodCategories:foodCategoryData,loading,error}=useSelector(store=>store.foodCategory)
+  const dispatch=useDispatch()
+
+  useEffect(()=>{
+    if(!foodCategoryData || foodCategoryData.length===0)
+    {
+      dispatch(foodCategoryThunk())
+    }
+  },[dispatch,foodCategoryData.length])
+
 
     if(loading)
     {
@@ -26,7 +38,7 @@ function HomeFoodCategory({ foodCategoryData, loading }) {
       <div className="w-full grid grid-flow-col auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {foodCategoryData.map((item) => (
               <div
-                key={item.foodCategoryId}
+                key={item.id}
                 className="h-[150px] sm:h-[180px] bg-white rounded-[22px] border border-orange-100 shadow-sm hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-3"
               >
                 <img

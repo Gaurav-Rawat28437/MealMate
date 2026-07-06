@@ -7,7 +7,7 @@ const store=configureStore({
     reducer:{
         location:locationSliceReducer,
         foodCategory:foodCategorySliceReducer,
-        restaurant:restaurantSliceReducer
+        restaurants:restaurantSliceReducer
     }
 
 })

@@ -22,7 +22,7 @@ export const getLocationThunk=createAsyncThunk("locationThunk",async()=>{
         try{
             const res=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${data.lat}&lon=${data.lon}&format=json`)
             const Ldata=await res.json()
-            console.log(Ldata)
+            
            
             const city = Ldata.address?.city || Ldata.address?.town || Ldata.address?.village || Ldata.address?.state_district || Ldata.address?.state || ""
 

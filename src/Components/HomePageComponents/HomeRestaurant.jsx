@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { restaurantThunk } from '../../Utils/restaurantSlice'
 
 function HomeRestaurant() {
-    const restaurantData=useSelector(store=>store.restaurants.data)
+    const restaurantData=useSelector(store=>store.restaurants?.data)
     console.log(restaurantData)
     const dispatch=useDispatch()
     useEffect(()=>{

@@ -1,7 +1,8 @@
 import React from 'react'
 import HomePageNavbar from '../Components/HomePageComponents/HomePageNavbar'
 import HomeFoodCategory from '../Components/HomePageComponents/HomeFoodCategory'
-import HomeRestaurant from '../Components/HomePageComponents/HomeRestaurant'
+import BestRestaurantsInYourCity from '../Components/HomePageComponents/BestRestaurantsInYourCity'
+import TopRatedRestaurants from '../Components/HomePageComponents/TopRatedRestaurants'
 
 
 function Home() {
@@ -12,7 +13,8 @@ function Home() {
 
       <section className="px-[100px] py-10">
         <HomeFoodCategory />
-        <HomeRestaurant/>
+        <TopRatedRestaurants />
+        <BestRestaurantsInYourCity/>
 
       </section>
       

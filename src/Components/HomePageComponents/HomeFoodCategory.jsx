@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import LeftRightBtn from "../other/LeftRightBtn";
 import FoodCategoryLoading from "../other/HomeFoodCategoryLoading";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,8 +6,10 @@ import { foodCategoryThunk } from "../../Utils/foodCategorySlice";
 
 function HomeFoodCategory() {
 
-   const {foodCategories:foodCategoryData,loading,error}=useSelector(store=>store.foodCategory)
+   const {foodCategories:foodCategoryData=[],loading,error}=useSelector(store=>store.foodCategory)
   const dispatch=useDispatch()
+
+  const foodScrollLeftRightRef = useRef(null)
 
   useEffect(()=>{
     if(!foodCategoryData || foodCategoryData.length===0)
@@ -23,7 +25,7 @@ function HomeFoodCategory() {
     }
 
   return (
-    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0">
+    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0 mx-auto">
       <div className="w-full flex justify-between items-center gap-3">
         <div>
 
@@ -32,10 +34,12 @@ function HomeFoodCategory() {
           </h2>
         </div>
 
-        <LeftRightBtn />
+        <LeftRightBtn scrollLeftRightRef={foodScrollLeftRightRef} />
       </div>
 
-      <div className="w-full grid grid-flow-col auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={foodScrollLeftRightRef}
+        className="w-full grid grid-flow-col justify-center auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ">
         {foodCategoryData.map((item) => (
               <div
                 key={item.id}

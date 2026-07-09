@@ -71,3 +71,40 @@ export const getAllRestaurants = async () => {
     throw error
   }
 }
+
+
+export const getRestaurantsByCity = async (city) => {
+
+  const res = await fetch(`${import.meta.env.VITE_BE_URL}/restaurants?city=${city}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch restaurants by city");
+  }
+
+  return await res.json()
+}
+
+export const getTopRatedRestaurants = async (rating = 4.5) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BE_URL}/restaurants?minRating=${rating}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch top rated restaurants")
+  }
+
+  return await res.json()
+}

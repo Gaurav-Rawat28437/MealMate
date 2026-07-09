@@ -5,7 +5,7 @@ function FoodCategoryLoading({ length = 8 }) {
   const skeletonLength = length > 0 ? length : 8;
 
   return (
-    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0">
+    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0 mx-auto">
       <div className="w-full flex justify-between items-center gap-3">
         <div>
           <div className="h-[25px] w-[260px] bg-orange-100 rounded-lg animate-pulse"></div>
@@ -14,7 +14,7 @@ function FoodCategoryLoading({ length = 8 }) {
         <LeftRightBtn />
       </div>
 
-      <div className="w-full grid grid-flow-col auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-hidden">
+      <div className="w-full grid grid-flow-col justify-center auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-hidden">
         {[...Array(skeletonLength)].map((_, index) => (
           <div
             key={index}

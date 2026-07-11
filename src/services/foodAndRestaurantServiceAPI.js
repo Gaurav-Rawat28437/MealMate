@@ -108,3 +108,21 @@ export const getTopRatedRestaurants = async (rating = 4.5) => {
 
   return await res.json()
 }
+
+export const getAllRestaurantsWithLimit = async (page = 1, limit = 9) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BE_URL}/restaurants?page=${page}&limit=${limit}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch restaurants");
+  }
+
+  return await res.json()
+};

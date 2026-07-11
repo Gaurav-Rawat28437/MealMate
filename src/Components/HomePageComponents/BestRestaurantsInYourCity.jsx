@@ -10,11 +10,13 @@ function BestRestaurantsInYourCity() {
   const [restaurantData, setRestaurantData] = useState([])
   const [showDelhiFallback, setShowDelhiFallback] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
         setLoading(true)
+        setError("")
         setShowDelhiFallback(false)
 
         const cityData = await getRestaurantsByCity(city)
@@ -28,7 +30,8 @@ function BestRestaurantsInYourCity() {
           setShowDelhiFallback(true)
         }
       } catch (error) {
-        console.log(error.message)
+        setError("Unable to load restaurants. Please check your internet connection.")
+        setRestaurantData([])
       } finally {
         setLoading(false)
       }
@@ -39,6 +42,17 @@ function BestRestaurantsInYourCity() {
 
   if (loading) {
     return <HomeRestaurantLoading length={6} />
+  }
+
+  if (error) {
+    return (
+      <section className="w-full max-w-[1057px] mt-12 mx-auto">
+        <div className="bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5">
+          <h3 className="font-bold">Unable to load restaurants</h3>
+          <p className="text-sm mt-1">{error}</p>
+        </div>
+      </section>
+    )
   }
 
   return (
@@ -67,8 +81,8 @@ function BestRestaurantsInYourCity() {
         </h3>
       )}
 
-      <div className="grid grid-cols-3 gap-7 justify-center">
-        {restaurantData.length>0 && restaurantData.map((item) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
+        {restaurantData.map((item) => (
           <RestaurantsCards item={item} key={item.restaurantId} />
         ))}
       </div>

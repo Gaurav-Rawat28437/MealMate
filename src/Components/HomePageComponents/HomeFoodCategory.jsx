@@ -7,6 +7,7 @@ import { foodCategoryThunk } from "../../Utils/foodCategorySlice";
 function HomeFoodCategory() {
 
    const {foodCategories:foodCategoryData=[],loading,error}=useSelector(store=>store.foodCategory)
+  
   const dispatch=useDispatch()
 
   const foodScrollLeftRightRef = useRef(null)
@@ -21,8 +22,19 @@ function HomeFoodCategory() {
 
     if(loading)
     {
-        return <FoodCategoryLoading length={foodCategoryData.length}/>
+        return <FoodCategoryLoading length={foodCategoryData.length || 8}/>
     }
+    
+    if (error) {
+  return (
+    <div className="w-full max-w-[1057px] mt-8 mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5">
+      <h3 className="font-bold">Unable to load food categories</h3>
+      <p className="text-sm mt-1">
+        Please check your internet connection and try again.
+      </p>
+    </div>
+  )
+}
 
   return (
     <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0 mx-auto">

@@ -10,21 +10,17 @@ import { restaurantLoadMoreThunk } from "../Utils/RestaurantSlice"
 function Restaurant() {
   const dispatch = useDispatch()
 
-  const {loadRestaurant,page,hasMore,loading,error} = useSelector((store) => store.restaurants?.loadRestaurant)
+  const {loadRestaurant,page,hasMore,loading,error} = useSelector((store) => store.restaurants)
 
   useEffect(() => {
-    if (!loadRestaurant || loadRestaurant.length === 0) {
+      if(loadRestaurant && loadRestaurant.length>0) return
       dispatch(restaurantLoadMoreThunk({ page: 1, limit: 9 }))
-    }
-  }, [dispatch, loadRestaurant.length])
+    
+  }, [])
 
   const loadMoreHandler = () => {
     if (!loading && hasMore) {
-      dispatch(
-        restaurantLoadMoreThunk({
-          page: page + 1,
-          limit: 9,
-        })
+      dispatch(restaurantLoadMoreThunk({page: page + 1, limit: 9})
       )
     }
   }
@@ -52,7 +48,7 @@ function Restaurant() {
         )}
 
         <div className="w-full max-w-[1057px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
-          {loadRestaurant.map((item) => (
+          {loadRestaurant.length>0 && loadRestaurant.map((item) => (
             <RestaurantsCards item={item} key={item.restaurantId} />
           ))}
         </div>

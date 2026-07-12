@@ -2,7 +2,6 @@ import React, {useEffect, useState } from "react";
 
 function LeftRightBtn({scrollLeftRightRef}) {
 
-  console.log(scrollLeftRightRef)
   const [scrollPosition,setScrollPosition]=useState(0)
   const [maxScroll, setMaxScroll] = useState(0)
 

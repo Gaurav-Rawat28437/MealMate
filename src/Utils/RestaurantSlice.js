@@ -6,31 +6,28 @@ import {
 } from "../services/foodAndRestaurantServiceAPI"
 
 // For normal all restaurants / category restaurants
-export const restaurantThunk = createAsyncThunk("restaurant/get-restaurants", async (foodCategoryId) => { 
-  
-    if (foodCategoryId) 
-    { 
-        const data = await getRestaurantsByCategory(foodCategoryId) 
-        console.log(data) 
-        return data 
-    } 
-    const data = await getAllRestaurants() 
-    console.log(data) 
-    return data 
+export const restaurantThunk = createAsyncThunk("restaurant/get-restaurants", async (foodCategoryId) => {
+
+    if (foodCategoryId) {
+        const data = await getRestaurantsByCategory(foodCategoryId)
+        console.log({ foodCategoryId, data })
+        return { foodCategoryId, data }
+    }
 })
 
 // For Menu page Load More
-export const restaurantLoadMoreThunk = createAsyncThunk("restaurant/loadMoreRestaurants",async ({page, limit}) => {
-            const data = await getAllRestaurantsWithLimit(page, limit)
-            return data
-    })
+export const restaurantLoadMoreThunk = createAsyncThunk("restaurant/loadMoreRestaurants", async ({ page, limit }) => {
+    const data = await getAllRestaurantsWithLimit(page, limit)
+    console.log(data)
+    return data
+})
 
 const restaurantSlice = createSlice({
     name: "restaurant",
 
     initialState: {
-        restaurant:[],
-        loadRestaurant:[],
+        restaurant: {},
+        loadRestaurant: [],
         loading: false,
         error: null,
         page: 1,
@@ -40,47 +37,67 @@ const restaurantSlice = createSlice({
     reducers: {},
 
     extraReducers: (builder) => {
-    builder
-      // normal restaurant thunk
-      .addCase(restaurantThunk.pending, (state,action) => {
-        state.loading = true
-        state.error = null
-      })
+        builder
+            // normal restaurant thunk
+            .addCase(restaurantThunk.pending, (state, action) => {
+                return {
+                    ...state,
+                    loading: true,
+                    error: null
+                }
+            })
 
-      .addCase(restaurantThunk.fulfilled, (state, action) => {
-        state.loading = false
-        state.restaurant = action.payload
-      })
+            .addCase(restaurantThunk.fulfilled, (state, action) => {
+                const { foodCategoryId, data } = action.payload
 
-      .addCase(restaurantThunk.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload || action.error.message
-      })
+                state.loading = false
+                if (state.restaurant[foodCategoryId]) {
+                    return
+                }
 
-      // load more thunk
-      .addCase(restaurantLoadMoreThunk.pending, (state) => {
-        
-        state.loading = true
-        state.error = null
-      })
+                state.restaurant[foodCategoryId] = data
+            })
 
-      .addCase(restaurantLoadMoreThunk.fulfilled, (state, action) => {
-        state.loading = false
+            .addCase(restaurantThunk.rejected, (state, action) => {
+                return {
+                    ...state,
+                    loading: false,
+                    error: action.payload || action.error.message
+                }
+            })
 
-        state.loadRestaurant = [
-          ...state.loadRestaurant,
-          ...action.payload.data,
-        ]
+            // load more thunk
+            .addCase(restaurantLoadMoreThunk.pending, (state) => {
+                return {
+                    ...state,
+                    loading: true,
+                    error: null
+                }
+            })
 
-        state.page = action.payload.currentPage
-        state.hasMore = action.payload.hasMore
-      })
+            .addCase(restaurantLoadMoreThunk.fulfilled, (state, action) => {
+                return {
+                    ...state,
+                    loading: false,
 
-      .addCase(restaurantLoadMoreThunk.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload || action.error.message
-      })
-  }
+                    loadRestaurant: [
+                        ...state.loadRestaurant,
+                        ...action.payload.data,
+                    ],
+
+                    page: action.payload.currentPage,
+                    hasMore: action.payload.hasMore
+                }
+            })
+
+            .addCase(restaurantLoadMoreThunk.rejected, (state, action) => {
+                return {
+                    ...state,
+                    loading: false,
+                    error: action.payload || action.error.message
+                }
+            })
+    }
 })
 
 export default restaurantSlice.reducer

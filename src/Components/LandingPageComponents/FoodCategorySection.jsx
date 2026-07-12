@@ -1,8 +1,10 @@
 import React from "react";
 import LandingFoodItemLoading from "../other/LandingFoodItemLoading";
 import LeftRightBtn from "../other/LeftRightBtn";
+import { useNavigate } from "react-router-dom";
 
 function FoodCategorySection({foodItemsData,loading}) {
+  const nav=useNavigate()
 
   if(loading)
   {
@@ -33,6 +35,9 @@ function FoodCategorySection({foodItemsData,loading}) {
         {foodItemsData.length>0 && foodItemsData.map((item, index) => (
           <div
             key={index}
+            onClick={()=>{
+              nav(`/restaurants/Category/:${item.foodCategoryId}`)
+            }}
             className="h-[170px] w-[160px] sm:w-[190px] bg-white rounded-[26px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-4"
           >
             <div className="h-[82px] w-[82px] rounded-full bg-[#FFF0E7] flex items-center justify-center text-5xl">

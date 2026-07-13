@@ -36,7 +36,7 @@ function FoodCategorySection({foodItemsData,loading}) {
           <div
             key={index}
             onClick={()=>{
-              nav(`/restaurants/Category/:${item.foodCategoryId}`)
+              nav(`/restaurants/Category/${item.foodCategoryId}?name=${item.name}`)
             }}
             className="h-[170px] w-[160px] sm:w-[190px] bg-white rounded-[26px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-4"
           >

@@ -56,7 +56,7 @@ function HomeFoodCategory() {
           <div
             key={item.id}
             onClick={() => {
-              nav(`/restaurants/category/${item.id}`)
+              nav(`/restaurants/category/${item.id}?name=${item.name}`)
             }}
             className="h-[150px] sm:h-[180px] bg-white rounded-[22px] border border-orange-100 shadow-sm hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-3"
           >

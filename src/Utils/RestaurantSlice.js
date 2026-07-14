@@ -10,7 +10,6 @@ export const restaurantThunk = createAsyncThunk("restaurant/get-restaurants", as
 
     if (foodCategoryId) {
         const data = await getRestaurantsByCategory(foodCategoryId)
-        console.log({ foodCategoryId, data })
         return { foodCategoryId, data }
     }
 })
@@ -18,7 +17,7 @@ export const restaurantThunk = createAsyncThunk("restaurant/get-restaurants", as
 // For Menu page Load More
 export const restaurantLoadMoreThunk = createAsyncThunk("restaurant/loadMoreRestaurants", async ({ page, limit }) => {
     const data = await getAllRestaurantsWithLimit(page, limit)
-    console.log(data)
+    
     return data
 })
 

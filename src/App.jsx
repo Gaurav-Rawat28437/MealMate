@@ -8,6 +8,7 @@ import LandingPage from './pages/Landing'
 import Home from './pages/Home'
 import Restaurant from './pages/Restaurant'
 import RestaurantByFoodCategory from './pages/RestaurantByFoodCategory'
+import RestaurantMenu from './pages/RestaurantMenu'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         
         <Route path='/restaurants' element={<Restaurant/>}></Route>
         <Route path='/restaurants/Category/:foodCategoryId' element={<RestaurantByFoodCategory/>}></Route>
+        <Route path='/restaurants/:restaurantId' element={<RestaurantMenu />}></Route>
       </Routes>
       
    

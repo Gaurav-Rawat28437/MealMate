@@ -125,4 +125,28 @@ export const getAllRestaurantsWithLimit = async (page = 1, limit = 9) => {
   }
 
   return await res.json()
+}
+
+export const getRestaurantById = async (restaurantId) => {
+  const res = await fetch(`${import.meta.env.VITE_BE_URL}/restaurants/${restaurantId}`)
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch menu cards")
+  }
+
+  const data=await res.json()
+
+  return data;
+}
+
+export const getMenuCardsByRestaurantId = async (restaurantId) => {
+  const res = await fetch(`${import.meta.env.VITE_BE_URL}/menuCards?restaurantId=${restaurantId}`)
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch menu cards")
+  }
+
+  const data=await res.json()
+
+  return data;
 };

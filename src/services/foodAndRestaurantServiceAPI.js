@@ -149,4 +149,17 @@ export const getMenuCardsByRestaurantId = async (restaurantId) => {
   const data=await res.json()
 
   return data;
-};
+}
+
+
+export const getOfferRestaurants = async (page = 1, limit = 9) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BE_URL}/restaurants?hasOffer=true&page=${page}&limit=${limit}`
+  )
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch offer restaurants")
+  }
+
+  return await res.json()
+}

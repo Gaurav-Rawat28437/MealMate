@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import HomePageNavbar from "../Components/HomePageComponents/HomePageNavbar"
 import Footer from "../Components/other/Footer"
 import HomeRestaurantLoading from "../Components/other/HomeRestaurantLoading"
+import RestaurantOffer from "../Components/MenuPageComponents/RestaurantOffer"
 import MenuAccordion from "../Components/MenuPageComponents/MenuAccordion"
 
 import {
@@ -148,9 +149,19 @@ function RestaurantMenu() {
                       {restaurant.restaurantInfo?.minMaxDeliveryTime ||
                         "30-40 mins"}
                     </p>
+
+                    {restaurant.offer && (
+                      <p className="text-sm text-[#FF5200] font-black mt-4">
+                        {restaurant.offer.displayText}
+                      </p>
+                    )}
+                    
                   </div>
                 </div>
               </div>
+              
+
+              <RestaurantOffer offer={restaurant.offer} />
 
               <div className="flex items-center justify-center gap-3 mb-6">
                 <div className="h-[1px] w-10 bg-slate-300"></div>

@@ -4,7 +4,7 @@ import HomePageNavbar from "../Components/HomePageComponents/HomePageNavbar"
 import RestaurantsCards from "../Components/HomePageComponents/RestaurantsCards"
 import Footer from "../Components/other/Footer"
 import HomeRestaurantLoading from "../Components/other/HomeRestaurantLoading"
-import { restaurantLoadMoreThunk } from "../Utils/RestaurantSlice"
+import { restaurantLoadMoreThunk } from "../Utils/restaurantSlice"
 
 
 function Restaurant() {

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import locationSliceReducer from "./LocationSlice"
 import foodCategorySliceReducer from "./foodCategorySlice";
-import restaurantSliceReducer from "./restaurantSlice";
+import restaurantSliceReducer from "./RestaurantSlice";
 
 const store=configureStore({
     reducer:{

@@ -11,6 +11,7 @@ import Offers from './pages/Offers'
 import {Toaster} from "react-hot-toast"
 import MenuCart from './pages/MenuCart'
 import PageNotFound from './pages/PageNotFound'
+import Search from './pages/Search'
 
 function App() {
 
@@ -31,8 +32,8 @@ function App() {
         <Route path='/restaurants/:restaurantId' element={<RestaurantMenu />}></Route>
 
         <Route path="/offers" element={<Offers />} />
-
         <Route path="/cart" element={<MenuCart />} />
+        <Route path="/search" element={<Search />} />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

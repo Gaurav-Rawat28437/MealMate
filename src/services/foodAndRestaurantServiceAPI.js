@@ -163,3 +163,14 @@ export const getOfferRestaurants = async (page = 1, limit = 9) => {
 
   return await res.json()
 }
+
+export const searchRestaurants = async (searchText) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_BE_URL}/restaurants?search=${searchText}`)
+
+  if (!res.ok) {
+    throw new Error("Failed to search restaurants")
+  }
+
+  return await res.json()
+}

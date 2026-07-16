@@ -86,7 +86,7 @@ function RestaurantMenu() {
     <main className="min-h-screen bg-[#FFF8F2]">
       <HomePageNavbar />
 
-      <section className="w-full px-4 sm:px-6 md:px-10 py-10 flex justify-center">
+      <section className="w-full px-4 sm:px-6 md:px-10 py-10 flex justify-center pt-[90px]">
         <div className="w-full max-w-[800px]">
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 mb-8">

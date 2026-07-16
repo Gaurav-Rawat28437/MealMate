@@ -10,6 +10,7 @@ import RestaurantMenu from './pages/RestaurantMenu'
 import Offers from './pages/Offers'
 import toast, {Toaster} from "react-hot-toast"
 import MenuCart from './pages/MenuCart'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
 
@@ -43,6 +44,8 @@ function App() {
         <Route path="/offers" element={<Offers />} />
 
         <Route path="/cart" element={<MenuCart />} />
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       
    

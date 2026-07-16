@@ -73,7 +73,7 @@ function Restaurant() {
         )}
       </section>
 
-      {!hasMore && loadRestaurant.length > 0 && <Footer />}
+      <Footer />
     </main>
   )
 }

@@ -29,7 +29,7 @@ function Restaurant() {
     <main className="min-h-screen bg-[#FFF8F2]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[90px] ">
         <div className="w-full max-w-[1057px] mx-auto mb-8">
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
             Explore Restaurant

@@ -29,7 +29,7 @@ function Home() {
     <main className="min-h-screen bg-[#FFF8F2]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[80px]">
         <HomeFoodCategory />
         <TopRatedRestaurants />
         <BestRestaurantsInYourCity />

@@ -1,18 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import store from "../../Utils/Store";
+import React from "react"
+import { useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
 
 function HomePageNavbar() {
-  const { suburb, city } = useSelector(store=> store.location?.data)
+  const navigate = useNavigate()
 
-const location = suburb && city ? `${suburb}, ${city}` : "Select location"
+  const { suburb, city } = useSelector((store) => store.location?.data) || {}
+  const cartItems = useSelector((store) => store.cart) || []
+
+  const location = suburb && city ? `${suburb}, ${city}` : "Select location"
 
   return (
-    <nav className="w-full h-[80px] bg-white flex items-center justify-between px-[100px] shadow-lg">
+    <nav className="fixed top-0 left-0 z-50 w-full h-[80px] bg-white flex items-center justify-between gap-9 px-6 lg:px-[100px] shadow-lg">
       
-      {/* Logo */}
-      <Link to="/" className="flex items-center gap-3">
+      <Link to="/" className="flex items-center gap-3 shrink-0">
         <img
           src="/icons/mealmate-icon-square.svg"
           alt="MealMate logo"
@@ -24,29 +25,34 @@ const location = suburb && city ? `${suburb}, ${city}` : "Select location"
         </h1>
       </Link>
 
-      <div className="leading-tight">
-          <p className="text-[12px] text-gray-500 font-medium">
-            Deliver to
-          </p>
+      
+      <div className="leading-tight hidden md:block">
+        <p className="text-[12px] text-gray-500 font-medium">
+          Deliver to
+        </p>
 
-          <h3 className="w-35 text-[14px] font-bold text-slate-900 truncate">
-            {location}
-          </h3>
+        <h3 className="w-35 text-[14px] font-bold text-slate-900 truncate">
+          {location}
+        </h3>
       </div>
 
-      {/* Search */}
-      <div className="w-[420px] h-11 border border-gray-300 rounded-xl flex items-center px-4 gap-3">
+      
+      <div
+        onClick={() => navigate("/search")}
+        className="hidden md:flex w-[420px] h-11 border border-gray-300 rounded-xl items-center px-4 gap-3 cursor-pointer hover:border-[#FF7A1A] transition"
+      >
         <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
 
         <input
+          readOnly
           type="text"
           placeholder="Search food or restaurants"
-          className="w-full outline-none text-sm"
+          className="w-full outline-none text-sm cursor-pointer bg-transparent"
         />
       </div>
 
-      {/* Links */}
-      <div className="flex items-center gap-8 text-[16px] font-medium">
+      
+      <div className="flex items-center gap-5 lg:gap-8 text-[16px] font-medium">
         <Link to="/home" className="hover:text-[#FF7A1A]">
           Home
         </Link>
@@ -59,8 +65,14 @@ const location = suburb && city ? `${suburb}, ${city}` : "Select location"
           Offers
         </Link>
 
-        <Link to="/cart" className="hover:text-[#FF7A1A]">
+        <Link to="/cart" className="hover:text-[#FF7A1A] relative">
           Cart
+
+          {cartItems.length > 0 && (
+            <span className="absolute -top-3 -right-4 h-5 w-5 rounded-full bg-[#FF7A1A] text-white text-xs flex items-center justify-center font-bold">
+              {cartItems.length}
+            </span>
+          )}
         </Link>
 
         <Link
@@ -71,7 +83,7 @@ const location = suburb && city ? `${suburb}, ${city}` : "Select location"
         </Link>
       </div>
     </nav>
-  );
+  )
 }
 
-export default HomePageNavbar;
+export default HomePageNavbar

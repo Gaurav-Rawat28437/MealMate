@@ -26,6 +26,7 @@ function Offers() {
       setHasMore(result.hasMore)
     } catch (error) {
       setError("Unable to load offers. Please check your internet.")
+      toast.error("This offer is not available")
     } finally {
       setLoading(false)
     }

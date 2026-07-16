@@ -1,13 +1,34 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 function Footer() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const scrollToTopRated = () => {
+    if (location.pathname === "/home") {
+      const section = document.getElementById("top-rated-section")
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    } else {
+      navigate("/home", {
+        state: {
+          scrollToTopRated: true,
+        },
+      })
+    }
+  }
+
   return (
     <footer className="w-full bg-[#1E1A17] text-white px-6 sm:px-10 lg:px-[90px] py-10">
       <div className="max-w-[1180px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           
-          {/* Brand */}
           <div>
             <Link to="/" className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-[#FF5200] flex items-center justify-center">
@@ -25,15 +46,18 @@ function Footer() {
             </p>
           </div>
 
-          {/* Explore */}
+         
           <div>
             <h3 className="text-sm font-bold mb-5">Explore</h3>
 
             <ul className="flex flex-col gap-4 text-sm text-[#9CA3AF]">
               <li>
-                <Link to="/home" className="hover:text-[#FF5200] transition">
+                <button
+                  onClick={scrollToTopRated}
+                  className="hover:text-[#FF5200] transition text-left"
+                >
                   Food Delivery
-                </Link>
+                </button>
               </li>
 
               <li>
@@ -46,25 +70,25 @@ function Footer() {
               </li>
 
               <li>
-                <a
-                  href="#top-rated"
-                  className="hover:text-[#FF5200] transition"
+                <button
+                  onClick={scrollToTopRated}
+                  className="hover:text-[#FF5200] transition text-left"
                 >
                   Top Rated
-                </a>
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Project */}
+      
           <div>
             <h3 className="text-sm font-bold mb-5">Project</h3>
 
             <ul className="flex flex-col gap-4 text-sm text-[#9CA3AF]">
               <li>
-                <a href="#about" className="hover:text-[#FF5200] transition">
+                <Link to="/" className="hover:text-[#FF5200] transition">
                   About Project
-                </a>
+                </Link>
               </li>
 
               <li>
@@ -89,7 +113,6 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
           <div>
             <h3 className="text-sm font-bold mb-5">Connect</h3>
 
@@ -134,13 +157,13 @@ function Footer() {
           </p>
 
           <div className="flex items-center gap-5 text-sm text-[#8B8178]">
-            <a href="#privacy" className="hover:text-[#FF5200] transition">
+            <button className="hover:text-[#FF5200] transition">
               Privacy
-            </a>
+            </button>
 
-            <a href="#terms" className="hover:text-[#FF5200] transition">
+            <button className="hover:text-[#FF5200] transition">
               Terms
-            </a>
+            </button>
           </div>
         </div>
       </div>

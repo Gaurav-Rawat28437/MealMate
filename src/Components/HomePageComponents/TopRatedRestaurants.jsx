@@ -39,7 +39,9 @@ function TopRatedRestaurants() {
   }
 
   return (
-    <section className="w-full max-w-[1057px] mt-12 mx-auto">
+    <section 
+      id="top-rated-section"
+      className="w-full max-w-[1057px] mt-12 mx-auto">
 
       <div className="w-full flex justify-between items-center gap-3">
         <div>

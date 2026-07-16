@@ -11,6 +11,7 @@ import {
   getRestaurantById,
   getMenuCardsByRestaurantId,
 } from "../services/foodAndRestaurantServiceAPI"
+import toast from "react-hot-toast"
 
 function RestaurantMenu() {
   const { restaurantId } = useParams()
@@ -37,6 +38,7 @@ function RestaurantMenu() {
         setMenuCards(menuData)
       } catch (error) {
         setError("Unable to load menu. Please check your internet.")
+        toast.error("Couldn’t load the menu. Try again.")
       } finally {
         setLoading(false)
       }

@@ -4,7 +4,6 @@ import { restaurantThunk } from '../../Utils/restaurantSlice'
 
 function HomeRestaurant() {
     const restaurantData=useSelector(store=>store.restaurants?.data)
-    console.log(restaurantData)
     const dispatch=useDispatch()
     useEffect(()=>{
         if(!restaurantData || restaurantData.length==0)

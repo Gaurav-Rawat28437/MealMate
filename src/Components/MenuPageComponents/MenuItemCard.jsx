@@ -1,4 +1,7 @@
 import React from "react"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../../Utils/menuCartSlice"
+import toast from "react-hot-toast"
 
 function MenuItemCard({ item }) {
   const CDN_URL =
@@ -16,6 +19,14 @@ function MenuItemCard({ item }) {
         ? item.price / 100
         : item.price
       : item.price
+
+
+  const dispatch=useDispatch()
+
+  function addCartHandler(){
+    dispatch(addToCart(item))
+    toast.success(`${item.name} added to cart 🍽️`)
+  }
 
   return (
     <div className="w-full flex gap-4 py-6 border-b border-slate-200">
@@ -77,7 +88,11 @@ function MenuItemCard({ item }) {
           </div>
         )}
 
-        <button className="mt-[-18px] h-9 w-[90px] bg-white text-green-700 border border-slate-300 rounded-xl font-black shadow-md hover:bg-green-50 transition">
+        <button 
+          onClick={()=>{
+            addCartHandler()
+          }}
+          className="mt-[-18px] h-9 w-[90px] bg-white text-green-700 border border-slate-300 rounded-xl font-black shadow-md hover:bg-green-50 transition">
           ADD
         </button>
       </div>

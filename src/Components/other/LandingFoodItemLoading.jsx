@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 function LandingFoodItemLoading({ length = 12 }) {
   return (
@@ -31,7 +31,7 @@ function LandingFoodItemLoading({ length = 12 }) {
         ))}
       </div>
     </main>
-  );
+  )
 }
 
-export default LandingFoodItemLoading;
+export default LandingFoodItemLoading

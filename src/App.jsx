@@ -8,7 +8,7 @@ import Restaurant from './pages/Restaurant'
 import RestaurantByFoodCategory from './pages/RestaurantByFoodCategory'
 import RestaurantMenu from './pages/RestaurantMenu'
 import Offers from './pages/Offers'
-import toast, {Toaster} from "react-hot-toast"
+import {Toaster} from "react-hot-toast"
 import MenuCart from './pages/MenuCart'
 import PageNotFound from './pages/PageNotFound'
 
@@ -18,17 +18,6 @@ function App() {
 
   useEffect(()=>{
     dispatch(getLocationThunk())
-    .unwrap()
-    .then(() => {
-      toast.success("Location updated successfully")
-    })
-    .catch((error) => {
-      if (error?.includes("permission")) {
-        toast.error("Please allow location access")
-      } else {
-        toast.error("Couldn’t detect your location")
-      }
-    })
   },[dispatch])
   return (<>
 <Toaster />

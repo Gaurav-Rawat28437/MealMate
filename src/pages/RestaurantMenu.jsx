@@ -78,8 +78,6 @@ function RestaurantMenu() {
         <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10">
           <HomeRestaurantLoading length={6} />
         </section>
-
-        <Footer/>
       </main>
     )
   }

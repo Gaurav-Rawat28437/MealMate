@@ -29,7 +29,7 @@ function HomeFoodCategory() {
 
   if (error) {
     return (
-      <div className="w-full max-w-[1057px] mt-8 mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5">
+      <div className="w-full max-w-[1057px] mt-8 mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 sm:p-5">
         <h3 className="font-bold">Unable to load food categories</h3>
         <p className="text-sm mt-1">
           Please check your internet connection and try again.
@@ -39,7 +39,7 @@ function HomeFoodCategory() {
   }
 
   return (
-    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 px-4 sm:px-0 mx-auto">
+    <div className="w-full max-w-[1057px] flex flex-col gap-4 mt-8 mx-auto">
       <div className="w-full flex justify-between items-center gap-3">
         <h2 className="text-[18px] sm:text-[21px] font-bold text-slate-900">
           What would you like to order?
@@ -50,7 +50,7 @@ function HomeFoodCategory() {
 
       <div
         ref={foodScrollLeftRightRef}
-        className="w-full grid grid-flow-col auto-cols-[130px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="w-full grid grid-flow-col auto-cols-[120px] sm:auto-cols-[150px] md:auto-cols-[160px] gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {foodCategoryData.map((item) => (
           <div
@@ -58,7 +58,7 @@ function HomeFoodCategory() {
             onClick={() => {
               nav(`/restaurants/category/${item.id}?name=${item.name}`)
             }}
-            className="h-[150px] sm:h-[180px] bg-white rounded-[22px] border border-orange-100 shadow-sm hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-3"
+            className="h-[135px] sm:h-[180px] bg-white rounded-[20px] sm:rounded-[22px] border border-orange-100 shadow-sm hover:shadow-lg hover:scale-105 transition duration-300 cursor-pointer flex flex-col justify-center items-center gap-3"
           >
             <img
               className="h-full w-full object-contain p-2"

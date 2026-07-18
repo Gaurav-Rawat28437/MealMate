@@ -8,37 +8,48 @@ import Restaurant from './pages/Restaurant'
 import RestaurantByFoodCategory from './pages/RestaurantByFoodCategory'
 import RestaurantMenu from './pages/RestaurantMenu'
 import Offers from './pages/Offers'
-import {Toaster} from "react-hot-toast"
+import { Toaster } from "react-hot-toast"
 import MenuCart from './pages/MenuCart'
 import PageNotFound from './pages/PageNotFound'
 import Search from './pages/Search'
 
 function App() {
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getLocationThunk())
-  },[dispatch])
+  }, [dispatch])
   return (<>
-<Toaster />
-      <Routes>
-        
-        <Route path='/' element={<LandingPage/>}></Route>
-        <Route path='/home' element={<Home/>}></Route>
-        
-        <Route path='/restaurants' element={<Restaurant/>}></Route>
-        <Route path='/restaurants/Category/:foodCategoryId' element={<RestaurantByFoodCategory/>}></Route>
-        <Route path='/restaurants/:restaurantId' element={<RestaurantMenu />}></Route>
+    <Toaster
+      position="bottom-right"
+      reverseOrder={false}
+      gutter={8}
+      toastOptions={{
+        duration: 1500,
+        style: {
+          fontSize: "14px",
+          borderRadius: "12px",
+        }
+      }}
+    />
+    <Routes>
 
-        <Route path="/offers" element={<Offers />} />
-        <Route path="/cart" element={<MenuCart />} />
-        <Route path="/search" element={<Search />} />
+      <Route path='/' element={<LandingPage />}></Route>
+      <Route path='/home' element={<Home />}></Route>
 
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-      
-   
+      <Route path='/restaurants' element={<Restaurant />}></Route>
+      <Route path='/restaurants/Category/:foodCategoryId' element={<RestaurantByFoodCategory />}></Route>
+      <Route path='/restaurants/:restaurantId' element={<RestaurantMenu />}></Route>
+
+      <Route path="/offers" element={<Offers />} />
+      <Route path="/cart" element={<MenuCart />} />
+      <Route path="/search" element={<Search />} />
+
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
+
+
   </>
   )
 }

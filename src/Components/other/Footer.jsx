@@ -25,10 +25,9 @@ function Footer() {
   }
 
   return (
-    <footer className="w-full bg-[#1E1A17] text-white px-6 sm:px-10 lg:px-[90px] py-10">
+    <footer className="w-full bg-[#1E1A17] text-white px-4 sm:px-8 lg:px-[90px] py-10">
       <div className="max-w-[1180px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          
           <div>
             <Link to="/" className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-[#FF5200] flex items-center justify-center">
@@ -40,13 +39,12 @@ function Footer() {
               </h2>
             </Link>
 
-            <p className="text-sm text-[#9CA3AF] mt-6 leading-7 max-w-[250px]">
+            <p className="text-sm text-[#9CA3AF] mt-6 leading-7 max-w-[260px]">
               MealMate is a food ordering practice project where users can
               explore food categories, restaurants, and top-rated restaurants.
             </p>
           </div>
 
-         
           <div>
             <h3 className="text-sm font-bold mb-5">Explore</h3>
 
@@ -80,7 +78,6 @@ function Footer() {
             </ul>
           </div>
 
-      
           <div>
             <h3 className="text-sm font-bold mb-5">Project</h3>
 
@@ -151,7 +148,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-10 pt-7 flex flex-col md:flex-row justify-between items-center gap-5">
+        <div className="border-t border-white/10 mt-10 pt-7 flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left">
           <p className="text-sm text-[#8B8178]">
             © 2026 MealMate. Built for learning and practice.
           </p>

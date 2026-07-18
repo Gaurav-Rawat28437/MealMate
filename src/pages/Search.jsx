@@ -43,20 +43,20 @@ function Search() {
   }, [search])
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="min-h-[90vh] px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[100px]">
+      <section className="min-h-[90vh] px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
         <div className="w-full max-w-[800px] mx-auto">
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900">
             Search Food & Restaurants
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-sm sm:text-base text-slate-500 mt-2">
             Search by restaurant name, cuisine, category, or area.
           </p>
 
-          <div className="relative mt-8">
+          <div className="relative mt-6 sm:mt-8">
             <input
               autoFocus
               value={search}
@@ -76,7 +76,7 @@ function Search() {
         )}
 
         {error && (
-          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 mt-10">
+          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 sm:p-5 mt-10">
             <h3 className="font-bold">Something went wrong</h3>
             <p className="text-sm mt-1">{error}</p>
           </div>
@@ -90,11 +90,11 @@ function Search() {
 
         {!loading && restaurants.length > 0 && (
           <div className="w-full max-w-[1057px] mx-auto mt-10">
-            <h2 className="text-xl font-black text-slate-900 mb-6">
+            <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-6">
               Search Results
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 justify-items-center">
               {restaurants.map((item) => (
                 <RestaurantsCards item={item} key={item.restaurantId} />
               ))}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 
 import HomePageNavbar from "../Components/HomePageComponents/HomePageNavbar"
 import Footer from "../Components/other/Footer"
@@ -10,7 +11,7 @@ import { getOfferRestaurants } from "../services/foodAndRestaurantServiceAPI"
 function Offers() {
   const [restaurants, setRestaurants] = useState([])
   const [page, setPage] = useState(1)
-  const [hasMore, setHasMore] = useState(true)
+  const [hasMore, setHasMore] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
@@ -19,14 +20,14 @@ function Offers() {
       setLoading(true)
       setError("")
 
-      const result = await getOfferRestaurants(pageNumber, 9)
-
-      setRestaurants((prev) => [...prev, ...result.data])
-      setPage(result.currentPage)
-      setHasMore(result.hasMore)
+      const result = await getOfferRestaurants(pageNumber, 8)
+      const offerData = result?.data || []
+      setRestaurants((prev) => [...prev,...offerData])
+      setPage(result?.currentPage || pageNumber)
+      setHasMore(result?.hasMore || false)
     } catch (error) {
       setError("Unable to load offers. Please check your internet.")
-      toast.error("This offer is not available")
+      toast.error("Unable to load offers")
     } finally {
       setLoading(false)
     }
@@ -43,20 +44,20 @@ function Offers() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[90px]">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
         <div className="w-full max-w-[1057px] mx-auto mb-8">
           <p className="text-[#FF5200] font-black text-sm">
             Special Deals
           </p>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 mt-2">
             Offers for You
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-sm sm:text-base text-slate-500 mt-2">
             Explore restaurants with exciting deals and discounts.
           </p>
         </div>
@@ -68,19 +69,21 @@ function Offers() {
         </div>
 
         {error && (
-          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 mb-8">
+          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 sm:p-5 mb-8">
             <h3 className="font-bold">Something went wrong</h3>
             <p className="text-sm mt-1">{error}</p>
           </div>
         )}
 
-        <div className="w-full max-w-[1057px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
-          {restaurants.map((item) => (
-            <OfferRestaurantCard item={item} key={item.restaurantId} />
-          ))}
-        </div>
+        {restaurants.length > 0 && (
+          <div className="w-full max-w-[1057px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 justify-items-center">
+            {restaurants.map((item) => (
+              <OfferRestaurantCard item={item} key={item.restaurantId} />
+            ))}
+          </div>
+        )}
 
-        {loading && <HomeRestaurantLoading length={3} />}
+        {loading && <HomeRestaurantLoading length={8} />}
 
         {!loading && restaurants.length === 0 && !error && (
           <p className="text-center text-slate-500 mt-10">
@@ -88,7 +91,7 @@ function Offers() {
           </p>
         )}
 
-        {hasMore && !loading && (
+        {restaurants.length > 0 && hasMore && !loading && (
           <div className="w-full flex justify-center mt-10">
             <button
               onClick={loadMoreHandler}
@@ -113,12 +116,12 @@ function Offers() {
 
 function TopOfferCard({ title, subtitle }) {
   return (
-    <div className="bg-white border border-orange-100 rounded-[24px] p-5 shadow-sm hover:shadow-lg transition">
+    <div className="bg-white border border-orange-100 rounded-[22px] sm:rounded-[24px] p-5 shadow-sm hover:shadow-lg transition">
       <div className="h-12 w-12 rounded-full bg-orange-100 text-[#FF5200] flex items-center justify-center font-black text-xl">
         %
       </div>
 
-      <h3 className="text-xl font-black text-slate-900 mt-4">
+      <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-4">
         {title}
       </h3>
 

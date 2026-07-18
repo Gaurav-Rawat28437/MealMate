@@ -26,10 +26,10 @@ function Home() {
   }, [location])
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[80px]">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
         <HomeFoodCategory />
         <TopRatedRestaurants />
         <BestRestaurantsInYourCity />

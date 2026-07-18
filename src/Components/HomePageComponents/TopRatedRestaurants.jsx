@@ -15,7 +15,6 @@ function TopRatedRestaurants() {
     const fetchTopRatedRestaurants = async () => {
       try {
         setLoading(true)
-        
 
         const topRatedRestaurants = await getTopRatedRestaurants(4.5)
 
@@ -39,26 +38,26 @@ function TopRatedRestaurants() {
   }
 
   return (
-    <section 
+    <section
       id="top-rated-section"
-      className="w-full max-w-[1057px] mt-12 mx-auto">
-
+      className="w-full max-w-[1057px] mt-10 sm:mt-12 mx-auto"
+    >
       <div className="w-full flex justify-between items-center gap-3">
         <div>
-            <h3 className="text-[20px] font-bold text-slate-900 mb-5">
-                Top Rated Restaurants
-            </h3>
-          
+          <h3 className="text-[18px] sm:text-[20px] font-bold text-slate-900 mb-5">
+            Top Rated Restaurants
+          </h3>
         </div>
 
-        <LeftRightBtn scrollLeftRightRef={RestaurantScrollLeftRightRef}/>
+        <LeftRightBtn scrollLeftRightRef={RestaurantScrollLeftRightRef} />
       </div>
 
-      <div 
+      <div
         ref={RestaurantScrollLeftRightRef}
-        className="mt-2 grid grid-flow-col auto-cols-[320px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        className="mt-2 grid grid-flow-col auto-cols-[260px] sm:auto-cols-[300px] lg:auto-cols-[320px] gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {topRatedData.map((item) => (
-          <RestaurantsCards item={item} key={item.restaurantId} size="small"/>
+          <RestaurantsCards item={item} key={item.restaurantId} size="small" />
         ))}
       </div>
     </section>

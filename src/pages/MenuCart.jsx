@@ -188,13 +188,17 @@ function MenuCart() {
     if (item.quantity === 1) {
       toast.success(`${item.name} removed from cart`)
     } else {
-      toast.success("Quantity updated")
+      toast.success("Quantity updated", {
+        id: "quantity-update",
+      })
     }
   }
 
   const removeHandler = (item) => {
     dispatch(removeFromCart(item.id))
-    toast.success(`${item.name} removed from cart`)
+    toast.success(`${item.name} removed from cart`, {
+      id: "remove-cart",
+    })
   }
 
   const placeOrderHandler = () => {
@@ -209,48 +213,48 @@ function MenuCart() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2] pt-[80px]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
         <div className="w-full max-w-[1057px] mx-auto">
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900">
             Your Cart
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-sm sm:text-base text-slate-500 mt-2">
             Review your selected food items before placing the order.
           </p>
         </div>
 
         {cartItems.length === 0 ? (
-          <div className="w-full max-w-[600px] mx-auto mt-16 bg-white rounded-[28px] border border-orange-100 shadow-sm p-8 text-center">
-            <div className="text-6xl mb-4">🛒</div>
+          <div className="w-full max-w-[600px] mx-auto mt-10 sm:mt-16 bg-white rounded-[24px] sm:rounded-[28px] border border-orange-100 shadow-sm p-6 sm:p-8 text-center">
+            <div className="text-5xl sm:text-6xl mb-4">🛒</div>
 
-            <h2 className="text-2xl font-black text-slate-900">
+            <h2 className="text-xl sm:text-2xl font-black text-slate-900">
               Your cart is empty
             </h2>
 
-            <p className="text-slate-500 mt-2">
+            <p className="text-sm sm:text-base text-slate-500 mt-2">
               Add some delicious food from the menu.
             </p>
 
             <Link
               to="/restaurants"
-              className="inline-block mt-6 px-7 py-3 rounded-xl bg-[#FF5200] text-white font-bold hover:bg-[#e84900] transition"
+              className="inline-block mt-6 px-6 sm:px-7 py-3 rounded-xl bg-[#FF5200] text-white font-bold hover:bg-[#e84900] transition"
             >
               Explore Restaurants
             </Link>
           </div>
         ) : (
-          <div className="w-full max-w-[1057px] mx-auto mt-10 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
-            <div className="flex flex-col gap-5">
-              <div className="bg-white rounded-[24px] border border-orange-100 shadow-sm p-5">
+          <div className="w-full max-w-[1057px] mx-auto mt-8 sm:mt-10 grid grid-cols-1 xl:grid-cols-[1fr_360px] gap-6 lg:gap-8">
+            <div className="flex flex-col gap-5 min-w-0">
+              <div className="bg-white rounded-[22px] sm:rounded-[24px] border border-orange-100 shadow-sm p-4 sm:p-5">
                 <p className="text-sm text-slate-500 font-semibold">
                   Ordering from
                 </p>
 
-                <h2 className="text-xl font-black text-slate-900 mt-1">
+                <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1 truncate">
                   {cartItems[0]?.restaurantName}
                 </h2>
               </div>
@@ -267,8 +271,8 @@ function MenuCart() {
               ))}
             </div>
 
-            <div className="bg-white rounded-[28px] border border-orange-100 shadow-sm p-6 h-fit sticky top-24">
-              <h2 className="text-xl font-black text-slate-900 mb-5">
+            <div className="bg-white rounded-[24px] sm:rounded-[28px] border border-orange-100 shadow-sm p-5 sm:p-6 h-fit xl:sticky xl:top-24">
+              <h2 className="text-lg sm:text-xl font-black text-slate-900 mb-5">
                 Bill Details
               </h2>
 
@@ -292,8 +296,8 @@ function MenuCart() {
                     </p>
                   )}
 
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="text-xs font-black text-[#FF5200] bg-white border border-orange-200 px-3 py-2 rounded-lg truncate">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-3">
+                    <span className="text-xs font-black text-[#FF5200] bg-white border border-orange-200 px-3 py-2 rounded-lg truncate w-fit max-w-full">
                       {restaurantOffer.code}
                     </span>
 
@@ -316,12 +320,12 @@ function MenuCart() {
                 </div>
               )}
 
-              <div className="flex justify-between text-sm font-semibold text-slate-600 mb-3">
+              <div className="flex justify-between gap-4 text-sm font-semibold text-slate-600 mb-3">
                 <span>Item Total</span>
                 <span>₹{cartTotal}</span>
               </div>
 
-              <div className="flex justify-between text-sm font-semibold text-slate-600 mb-3">
+              <div className="flex justify-between gap-4 text-sm font-semibold text-slate-600 mb-3">
                 <span>Delivery Fee</span>
 
                 {deliveryDiscount > 0 ? (
@@ -333,20 +337,20 @@ function MenuCart() {
                 )}
               </div>
 
-              <div className="flex justify-between text-sm font-semibold text-slate-600 mb-3">
+              <div className="flex justify-between gap-4 text-sm font-semibold text-slate-600 mb-3">
                 <span>Platform Fee</span>
                 <span>₹{platformFee}</span>
               </div>
 
               {couponDiscount > 0 && (
-                <div className="flex justify-between text-sm font-semibold text-green-600 mb-3">
+                <div className="flex justify-between gap-4 text-sm font-semibold text-green-600 mb-3">
                   <span>Coupon Discount</span>
                   <span>-₹{couponDiscount}</span>
                 </div>
               )}
 
               {deliveryDiscount > 0 && (
-                <div className="flex justify-between text-sm font-semibold text-green-600 mb-3">
+                <div className="flex justify-between gap-4 text-sm font-semibold text-green-600 mb-3">
                   <span>Delivery Discount</span>
                   <span>-₹{deliveryDiscount}</span>
                 </div>
@@ -354,7 +358,7 @@ function MenuCart() {
 
               <hr className="border-slate-200 mb-4" />
 
-              <div className="flex justify-between text-lg font-black text-slate-900">
+              <div className="flex justify-between gap-4 text-base sm:text-lg font-black text-slate-900">
                 <span>To Pay</span>
                 <span>₹{grandTotal}</span>
               </div>

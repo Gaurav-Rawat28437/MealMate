@@ -6,51 +6,51 @@ import Footer from "../Components/other/Footer"
 import HomeRestaurantLoading from "../Components/other/HomeRestaurantLoading"
 import { restaurantLoadMoreThunk } from "../Utils/restaurantSlice"
 
-
 function Restaurant() {
   const dispatch = useDispatch()
 
-  const {loadRestaurant,page,hasMore,loading,error} = useSelector((store) => store.restaurants)
+  const { loadRestaurant, page, hasMore, loading, error } = useSelector(
+    (store) => store.restaurants
+  )
 
   useEffect(() => {
-      if(loadRestaurant && loadRestaurant.length>0) return
-      dispatch(restaurantLoadMoreThunk({ page: 1, limit: 9 }))
-    
+    if (loadRestaurant && loadRestaurant.length > 0) return
+    dispatch(restaurantLoadMoreThunk({ page: 1, limit: 9 }))
   }, [])
 
   const loadMoreHandler = () => {
     if (!loading && hasMore) {
-      dispatch(restaurantLoadMoreThunk({page: page + 1, limit: 9})
-      )
+      dispatch(restaurantLoadMoreThunk({ page: page + 1, limit: 9 }))
     }
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10 pt-[90px] ">
+      <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
         <div className="w-full max-w-[1057px] mx-auto mb-8">
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900">
             Explore Restaurant
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-sm sm:text-base text-slate-500 mt-2">
             Choose your favourite restaurant and explore their menu.
           </p>
         </div>
 
         {error && (
-          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 mb-8">
+          <div className="w-full max-w-[1057px] mx-auto bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 sm:p-5 mb-8">
             <h3 className="font-bold">Something went wrong</h3>
             <p className="text-sm mt-1">{error}</p>
           </div>
         )}
 
-        <div className="w-full max-w-[1057px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
-          {loadRestaurant.length>0 && loadRestaurant.map((item) => (
-            <RestaurantsCards item={item} key={item.restaurantId} />
-          ))}
+        <div className="w-full max-w-[1057px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 justify-items-center">
+          {loadRestaurant.length > 0 &&
+            loadRestaurant.map((item) => (
+              <RestaurantsCards item={item} key={item.restaurantId} />
+            ))}
         </div>
 
         {loading && <HomeRestaurantLoading length={3} />}

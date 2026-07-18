@@ -72,10 +72,10 @@ function RestaurantMenu() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#FFF8F2]">
+      <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
         <HomePageNavbar />
 
-        <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-10">
+        <section className="px-4 sm:px-6 md:px-10 lg:px-[100px] py-8 sm:py-10">
           <HomeRestaurantLoading length={6} />
         </section>
       </main>
@@ -83,13 +83,13 @@ function RestaurantMenu() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FFF8F2]">
+    <main className="min-h-screen bg-[#FFF8F2] pt-[70px] sm:pt-[80px]">
       <HomePageNavbar />
 
-      <section className="w-full px-4 sm:px-6 md:px-10 py-10 flex justify-center pt-[90px]">
+      <section className="w-full px-4 sm:px-6 md:px-10 py-8 sm:py-10 flex justify-center">
         <div className="w-full max-w-[800px]">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 rounded-2xl p-5 mb-8">
+            <div className="bg-red-50 border border-red-200 text-red-600 rounded-2xl p-4 sm:p-5 mb-8">
               <h3 className="font-bold">Something went wrong</h3>
               <p className="text-sm mt-1">{error}</p>
             </div>
@@ -97,7 +97,7 @@ function RestaurantMenu() {
 
           {restaurant && (
             <>
-              <p className="text-xs font-bold text-slate-400 mb-4">
+              <p className="text-xs font-bold text-slate-400 mb-4 truncate">
                 Home / {restaurant.restaurantInfo?.cityName} /{" "}
                 <span className="text-slate-700">
                   {restaurant.restaurantName}
@@ -108,7 +108,7 @@ function RestaurantMenu() {
                 {restaurant.restaurantName}
               </h1>
 
-              <div className="bg-white rounded-[28px] border border-orange-100 shadow-sm p-5 mb-8">
+              <div className="bg-white rounded-[24px] sm:rounded-[28px] border border-orange-100 shadow-sm p-4 sm:p-5 mb-8">
                 <div className="flex flex-wrap items-center gap-2 text-sm sm:text-base font-bold text-slate-800">
                   <span className="h-6 w-6 rounded-full bg-green-700 text-white flex items-center justify-center text-xs">
                     ★
@@ -132,13 +132,13 @@ function RestaurantMenu() {
                 </p>
 
                 <div className="flex gap-3 mt-4 text-sm font-bold">
-                  <div className="flex flex-col items-center pt-1">
+                  <div className="flex flex-col items-center pt-1 shrink-0">
                     <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
                     <div className="w-[1px] h-5 bg-slate-300"></div>
                     <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <p>
                       Outlet{" "}
                       <span className="text-slate-500">
@@ -157,11 +157,9 @@ function RestaurantMenu() {
                         {restaurant.offer.displayText}
                       </p>
                     )}
-                    
                   </div>
                 </div>
               </div>
-              
 
               <RestaurantOffer offer={restaurant.offer} />
 
@@ -178,7 +176,7 @@ function RestaurantMenu() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search for dishes"
-                  className="w-full h-12 rounded-xl bg-[#E9E9EF] text-center outline-none font-bold text-slate-600 placeholder:text-slate-500"
+                  className="w-full h-12 rounded-xl bg-[#E9E9EF] text-center outline-none font-bold text-slate-600 placeholder:text-slate-500 px-10"
                 />
 
                 <i className="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-slate-600"></i>

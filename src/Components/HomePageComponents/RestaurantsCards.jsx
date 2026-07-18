@@ -9,13 +9,13 @@ function RestaurantsCards({ item, size = "normal" }) {
   return (
     <div
       onClick={() => navigate(`/restaurants/${item.restaurantId}`)}
-      className={`w-full bg-white rounded-[24px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-[1.03] transition duration-300 cursor-pointer overflow-hidden ${
+      className={`w-full bg-white rounded-[22px] sm:rounded-[24px] border border-orange-100 shadow-sm hover:shadow-xl hover:scale-[1.02] transition duration-300 cursor-pointer overflow-hidden ${
         isSmall ? "max-w-[260px]" : "max-w-[330px]"
       }`}
     >
       <div
         className={`relative w-full overflow-hidden ${
-          isSmall ? "h-[135px]" : "h-[175px]"
+          isSmall ? "h-[135px]" : "h-[160px] sm:h-[175px]"
         }`}
       >
         <img
@@ -29,10 +29,10 @@ function RestaurantsCards({ item, size = "normal" }) {
         </span>
       </div>
 
-      <div className={isSmall ? "p-3" : "p-4"}>
+      <div className={isSmall ? "p-3" : "p-3 sm:p-4"}>
         <h3
           className={`font-black text-[#1F2937] truncate ${
-            isSmall ? "text-base" : "text-lg"
+            isSmall ? "text-base" : "text-base sm:text-lg"
           }`}
         >
           {item.restaurantName}
@@ -43,11 +43,11 @@ function RestaurantsCards({ item, size = "normal" }) {
         </p>
 
         <div className="flex items-center justify-between gap-3 mt-3">
-          <span className="text-sm font-bold text-[#FF5200] truncate">
+          <span className="text-xs sm:text-sm font-bold text-[#FF5200] truncate">
             {item.restaurantInfo?.minMaxDeliveryTime || "30-40 mins"}
           </span>
 
-          <span className="text-sm font-semibold text-[#374151] truncate">
+          <span className="text-xs sm:text-sm font-semibold text-[#374151] truncate">
             {item.restaurantInfo?.costForTwoMessage || "₹300 for two"}
           </span>
         </div>

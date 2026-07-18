@@ -8,14 +8,14 @@ function MenuAccordion({ title, items, restaurant }) {
     <div className="bg-white border-b-[14px] border-[#E5E5E5]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5"
+        className="w-full flex items-center justify-between gap-4 py-5"
       >
-        <h3 className="text-lg sm:text-xl font-black text-slate-900">
+        <h3 className="text-base sm:text-lg md:text-xl font-black text-slate-900 text-left">
           {title} ({items.length})
         </h3>
 
         <i
-          className={`fa-solid fa-chevron-down transition ${
+          className={`fa-solid fa-chevron-down transition shrink-0 ${
             open ? "rotate-180" : ""
           }`}
         ></i>

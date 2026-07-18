@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import LandingFoodItemLoading from "../other/LandingFoodItemLoading";
 import LeftRightBtn from "../other/LeftRightBtn";
 import { useNavigate } from "react-router-dom";
 
 function FoodCategorySection({foodItemsData,loading}) {
   const nav=useNavigate()
+
+    const foodScrollLeftRightRef = useRef(null)
 
   if(loading)
   {
@@ -28,10 +30,12 @@ function FoodCategorySection({foodItemsData,loading}) {
           </p>
         </div>
 
-        <LeftRightBtn/>
+        <LeftRightBtn scrollLeftRightRef={foodScrollLeftRightRef} />
       </div>
 
-      <div className="grid grid-flow-col grid-rows-2 gap-5 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={foodScrollLeftRightRef}
+        className="grid grid-flow-col grid-rows-2 gap-5 overflow-x-auto pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {foodItemsData.length>0 && foodItemsData.map((item, index) => (
           <div
             key={index}

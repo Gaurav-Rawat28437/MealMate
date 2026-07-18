@@ -1,8 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react"
+import { useNavigate } from "react-router-dom"
 
 function HeroSection() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <section className="relative w-full h-full px-15 py-5">
@@ -23,7 +23,7 @@ function HeroSection() {
               Order your favorite dishes from top restaurants in town. We deliver
               deliciousness to your doorstep. Hungry for convenience?{" "}
               <span className="font-black text-[#333333]">
-                Let&apos;s get started!
+                Let&aposs get started!
               </span>
             </p>
           </div>
@@ -51,7 +51,7 @@ function HeroSection() {
 
       <div className=" h-80 w-150 relative ">
 
-        {/* Floating Card 1 */}
+        
         <div className="hidden absolute top-[60px] lg:flex h-[125px] w-[175px] bg-white/95 rounded-r-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.35)] flex-col justify-center items-center">
           <div className="text-[#FF7A1A] text-[34px]">
               <i className="fa-solid fa-truck"></i>
@@ -81,7 +81,7 @@ function HeroSection() {
       </div>
 
     </section>
-  );
+  )
 }
 
-export default HeroSection;
+export default HeroSection

@@ -11,6 +11,7 @@ import {
   increaseQuantity,
   decreaseQuantity,
   removeFromCart,
+  clearCart,
   } from "../Utils/menuCartSlice"
 
 function MenuCart() {

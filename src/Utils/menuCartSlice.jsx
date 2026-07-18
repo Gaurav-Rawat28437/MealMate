@@ -48,10 +48,15 @@ const menuCart = createSlice({
 
             const filter = state.filter(item => item.id !== id)
             return filter
+        },
+
+        clearCart: (state, action) => {
+            
+            return []
         }
 
     }
 })
 
 export default menuCart.reducer
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } = menuCart.actions
+export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = menuCart.actions

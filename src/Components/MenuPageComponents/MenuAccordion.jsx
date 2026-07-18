@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import MenuItemCard from "./MenuItemCard"
 
-function MenuAccordion({ title, items }) {
+function MenuAccordion({ title, items, restaurant }) {
   const [open, setOpen] = useState(true)
 
   return (
@@ -24,7 +24,11 @@ function MenuAccordion({ title, items }) {
       {open && (
         <div>
           {items.map((item) => (
-            <MenuItemCard key={item.id} item={item} />
+            <MenuItemCard
+              key={item.id}
+              item={item}
+              restaurant={restaurant}
+            />
           ))}
         </div>
       )}

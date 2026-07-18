@@ -1,9 +1,12 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addToCart } from "../../Utils/menuCartSlice"
 import toast from "react-hot-toast"
 
-function MenuItemCard({ item }) {
+function MenuItemCard({ item, restaurant }) {
+  const dispatch = useDispatch()
+  const cartItems = useSelector((store) => store.cart)
+
   const CDN_URL =
     "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/"
 
@@ -20,11 +23,28 @@ function MenuItemCard({ item }) {
         : item.price
       : item.price
 
+  const addCartHandler = () => {
+    const cartRestaurantId = cartItems[0]?.restaurantId
 
-  const dispatch=useDispatch()
+    if (
+      cartItems.length > 0 &&
+      cartRestaurantId !== restaurant.restaurantId
+    ) {
+      toast.error(
+        `Your cart has items from ${cartItems[0].restaurantName}. Clear cart first.`
+      )
+      return
+    }
 
-  function addCartHandler(){
-    dispatch(addToCart(item))
+    dispatch(
+      addToCart({
+        ...item,
+        restaurantId: restaurant.restaurantId,
+        restaurantName: restaurant.restaurantName,
+        restaurantOffer: restaurant.offer,
+      })
+    )
+
     toast.success(`${item.name} added to cart 🍽️`)
   }
 
@@ -56,7 +76,7 @@ function MenuItemCard({ item }) {
         </h4>
 
         <p className="text-sm font-bold text-slate-800 mt-1">
-          ₹{price || "99"}
+          ₹{price || 99}
         </p>
 
         {item.rating && (
@@ -88,11 +108,10 @@ function MenuItemCard({ item }) {
           </div>
         )}
 
-        <button 
-          onClick={()=>{
-            addCartHandler()
-          }}
-          className="mt-[-18px] h-9 w-[90px] bg-white text-green-700 border border-slate-300 rounded-xl font-black shadow-md hover:bg-green-50 transition">
+        <button
+          onClick={addCartHandler}
+          className="mt-[-18px] h-9 w-[90px] bg-white text-green-700 border border-slate-300 rounded-xl font-black shadow-md hover:bg-green-50 transition"
+        >
           ADD
         </button>
       </div>

@@ -224,6 +224,7 @@ function RestaurantMenu() {
                   key={categoryName}
                   title={categoryName}
                   items={items}
+                  restaurant={restaurant}
                 />
               ))}
             </>
